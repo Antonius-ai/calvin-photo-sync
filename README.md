@@ -16,6 +16,7 @@
 - **🔔 macOS Notifications**: Real-time status updates and completion notifications
 - **📊 Comprehensive Logging**: Detailed activity logs for monitoring and troubleshooting
 - **🛡️ Smart Deduplication**: Prevents re-uploading existing photos
+- **🧠 Smart Pre-Check**: Only transfers files not already uploaded (massive efficiency gain)
 
 ## 🚀 Quick Start
 
@@ -215,14 +216,13 @@ Use the control script for manual operations:
 For one-time manual syncing without the daemon:
 
 ```bash
-# Dry run (preview only)
-python3 calvin_photo_sync_optimized.py --dry-run
+# Smart sync - only transfers missing files (RECOMMENDED)
+python3 calvin_photo_sync_smart.py --dry-run  # Preview
+python3 calvin_photo_sync_smart.py            # Execute
 
-# Actual sync
-python3 calvin_photo_sync_optimized.py
-
-# Sync specific device
-python3 calvin_photo_sync_optimized.py --device Calvin
+# Full sync - processes all files (slower, for first-time setup)
+python3 calvin_photo_sync_optimized.py --dry-run  # Preview
+python3 calvin_photo_sync_optimized.py            # Execute
 
 # Test with limited photos
 python3 calvin_photo_sync_optimized.py --test --dry-run
