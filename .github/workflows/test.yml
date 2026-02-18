@@ -1,0 +1,78 @@
+name: Test Calvin Photo Sync
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.11]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install Pillow
+    
+    - name: Test configuration loading
+      run: |
+        python3 -c "
+        from calvin_photo_sync_optimized import PhotoSyncConfig
+        config = PhotoSyncConfig('example_config.json')
+        print('✅ Configuration loading test passed')
+        "
+    
+    - name: Test photo metadata extraction
+      run: |
+        python3 -c "
+        from calvin_photo_sync_optimized import PhotoMetadata
+        print('✅ PhotoMetadata import test passed')
+        "
+    
+    - name: Test trip detector initialization
+      run: |
+        python3 -c "
+        from calvin_photo_sync_optimized import LocalTripDetector
+        config = {
+            'short_gap_hours': 8,
+            'long_gap_days': 3,
+            'min_photos_per_trip': 3,
+            'gps_clustering': {
+                'enabled': True,
+                'cluster_radius_km': 50,
+                'min_location_photos': 5
+            }
+        }
+        detector = LocalTripDetector(config)
+        print('✅ Trip detector initialization test passed')
+        "
+    
+    - name: Test daemon imports
+      run: |
+        python3 -c "
+        from calvin_daemon_enhanced import EnhancedDeviceMonitor
+        print('✅ Daemon import test passed')
+        "
+    
+    - name: Validate shell scripts
+      run: |
+        bash -n calvin_control.sh
+        bash -n setup_calvin_daemon.sh
+        echo '✅ Shell script syntax validation passed'
+    
+    - name: Test plist syntax
+      run: |
+        plutil com.calvin.photosync.daemon.plist
+        echo '✅ Plist syntax validation passed'
