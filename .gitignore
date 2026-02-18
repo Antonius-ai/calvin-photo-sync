@@ -1,0 +1,74 @@
+# Calvin Photo Sync - Git Ignore File
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Configuration files (contain sensitive data)
+*.json
+!example_config.json
+
+# Log files
+*.log
+*.out.log
+*.err.log
+
+# Sync history
+*_sync_history.json
+*_history.json
+
+# Temporary directories
+Photo\ Staging/
+photo_staging/
+temp/
+tmp/
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+test_photos/
+test_output/
+test_config/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Local development
+local_test.py
+debug_*.py
+scratch.py

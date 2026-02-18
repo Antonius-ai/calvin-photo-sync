@@ -1,0 +1,58 @@
+{
+  "source_devices": {
+    "Calvin": "/Volumes/Calvin",
+    "MyCamera": "/Volumes/EOS_DIGITAL",
+    "iPhone": "/Volumes/iPhone"
+  },
+  "destination": "/Volumes/Rainbow",
+  "folders": {
+    "staging": "Photo Staging",
+    "new_photos": "New Photos",
+    "uploaded_photos": "Uploaded Photos"
+  },
+  "photo_extensions": [
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".heic",
+    ".raw",
+    ".cr2",
+    ".nef",
+    ".mov",
+    ".mp4"
+  ],
+  "scanning": {
+    "common_photo_dirs": [
+      "DCIM",
+      "Photos",
+      "Pictures",
+      "Camera",
+      "IMG",
+      "Images"
+    ],
+    "max_scan_depth": 10,
+    "batch_size": 50,
+    "quick_scan": true
+  },
+  "immich": {
+    "cli_path": "immich",
+    "server_url": "http://localhost:2283",
+    "email": "your-email@example.com",
+    "password": "your-password-here"
+  },
+  "trip_detection": {
+    "short_gap_hours": 8,
+    "long_gap_days": 3,
+    "min_photos_per_trip": 3,
+    "gps_clustering": {
+      "enabled": true,
+      "cluster_radius_km": 50,
+      "min_location_photos": 5,
+      "location_weight": 0.7
+    }
+  },
+  "notifications": {
+    "enabled": true,
+    "sound": true
+  }
+}
